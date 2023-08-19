@@ -1,0 +1,60 @@
+Requisitos caso del TREN. 
+ 
+Requisitos Funcionales: 
+ 
+1. Selección de Origen y Destino: 
+- El sistema debe permitir al usuario seleccionar un origen de una lista desplegable. 
+- Una vez seleccionado el origen, el sistema debe habilitar la lista desplegable de destinos. 
+- El usuario debe ser capaz de seleccionar un destino de la lista de destinos disponibles. 
+ 
+2. Agregar Destino: 
+- El sistema debe permitir al usuario agregar un destino a la lista de destinos seleccionados. 
+- Un destino solo se puede agregar si no ha sido seleccionado previamente y si no se han seleccionado más de 5 destinos. 
+- Después de agregar un destino, el costo total debe actualizarse y mostrar el costo acumulativo. 
+ 
+3. Limpiar Formulario: 
+   - El sistema debe permitir al usuario limpiar la selección de destinos y restaurar el formulario a su estado inicial. 
+ 
+4. Continuar con el Pago: 
+- El sistema debe permitir al usuario continuar con el proceso de pago si al menos un destino ha sido seleccionado. 
+- Si no se ha seleccionado ningún destino, el sistema debe mostrar una alerta indicando que al menos un destino debe ser seleccionado antes de continuar. 
+ 
+5. Proceso de Pago: 
+- El sistema debe presentar un formulario de tarjeta de crédito cuando el usuario decide continuar con el pago. 
+- El usuario debe ingresar el número de tarjeta, el titular de la tarjeta, la fecha de vencimiento y el CVV para completar el proceso de pago. 
+- Una vez que el formulario de pago se envía con éxito, se debe mostrar una alerta confirmando el éxito del pago. 
+6. Carrito de Compras: 
+- El sistema debe permitir al usuario ver el contenido de su carrito de compras haciendo clic en el botón "Carrito de Compras". 
+- El usuario debe poder limpiar el carrito de compras haciendo clic en el botón "Limpiar Carrito". 
+ 
+Requisitos No Funcionales: 
+ 
+1. Interfaz de Usuario: 
+   - La interfaz de usuario debe ser intuitiva y fácil de entender para los usuarios. 
+ 
+2. Rendimiento: 
+   - Las operaciones de agregar destino y calcular el costo total deben realizarse de manera rápida y eficiente. 
+ 
+3. Seguridad: 
+   - Los datos sensibles, como los detalles de la tarjeta de crédito, deben ser manejados y transmitidos de manera segura para proteger la información del usuario. 
+ 
+4. Usabilidad: 
+   - El sistema debe ser fácil de usar y navegar, incluso para usuarios no técnicos. 
+ 
+5. Compatibilidad 
+   - El sistema debe funcionar en diferentes navegadores web y dispositivos sin problemas. 
+ 
+6. Mantenibilidad: 
+   - El código debe estar bien estructurado y comentado para facilitar futuras actualizaciones y modificaciones. 
+ 
+7. Almacenamiento Local: 
+   - Los productos en el carrito de compras deben persistir entre sesiones utilizando almacenamiento local para que los usuarios puedan recuperar su carrito en visitas posteriores. 
+ 
+8. Experiencia de Usuario: 
+   - La experiencia general del usuario debe ser agradable y fluida, asegurando una respuesta rápida a las acciones del usuario. 
+ 
+9. Validación de Entradas: 
+   - El sistema debe validar las entradas del usuario para garantizar que se proporcionen datos correctos y coherentes. 
+ 
+Integrantes: Juan Fernando Rosero  
+Juan José Burbano 

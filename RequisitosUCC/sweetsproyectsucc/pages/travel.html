@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/sass/travel.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Transborder.com</title>
+</head>
+<body>
+
+    <header>
+        <img class="trainimg" src="../img/train.png" alt="train.png" style="width: 150px;">
+        <h1>TRANSBORDER S.A</h1>
+      </header>
+      <nav>
+        <a href="../index.html">INICIO</a>
+        <a href="pages/travel.html">VIAJAR</a>
+        <a href="#">SOPORTE</a>
+        <a href="#">SOBRE NOSOTROS</a>
+      </nav>
+
+      <div id="cart-container">
+        <button id="cart-button">Carrito de Compras</button>
+        <button id="clear-cart-button">Limpiar Carrito</button>
+        <div id="cart-items" style="display: none;">
+        </div>
+      </div>
+
+    <h1>Planifique su recorrido:</h1>
+
+<form id="destinations-form">
+    <label for="origin">Selecciona un origen:</label>
+    <select id="origin" name="origin">
+      <option value="">Selecciona un origen</option>
+      <option value="San Miguel">San Miguel</option>
+      <option value="Villa Laurel">Villa Laurel</option>
+      <option value="Ciudad del Amanecer">Ciudad del Amanecer</option>
+      <option value="Pueblo Esmeralda">Pueblo Esmeralda</option>
+      <option value="Santa Clara">Santa Clara</option>
+      <option value="Puerto Sereno">Puerto Sereno</option>
+      <option value="Bella Vista">Bella Vista</option>
+      <option value="Valle Florido">Valle Florido</option>
+      <option value="Montaña Azul">Montaña Azul</option>
+      <option value="Bahía Dorada">Bahía Dorada</option>
+    </select>
+  
+    <label for="destination">Selecciona un destino:</label>
+    <select id="destination" name="destination" disabled>
+      <option value="">Selecciona un destino</option>
+      <option value="San Miguel">San Miguel</option>
+      <option value="Villa Laurel">Villa Laurel</option>
+      <option value="Ciudad del Amanecer">Ciudad del Amanecer</option>
+      <option value="Pueblo Esmeralda">Pueblo Esmeralda</option>
+      <option value="Santa Clara">Santa Clara</option>
+      <option value="Puerto Sereno">Puerto Sereno</option>
+      <option value="Bella Vista">Bella Vista</option>
+      <option value="Valle Florido">Valle Florido</option>
+      <option value="Montaña Azul">Montaña Azul</option>
+      <option value="Bahía Dorada">Bahía Dorada</option>
+    </select>
+    <button id="add-destination" type="button">Agregar Destino</button>
+    <button id="clear-form" type="button">Limpiar</button>
+  
+    <p>Total: $<span id="total-cost">0</span>COP</p>
+  
+    <button id="continue-button" type="button">Continuar</button>
+</form>
+
+<div id="selected-destinations-container">
+    <p>Destinos seleccionados:</p>
+    <ul id="selected-destinations"></ul>
+</div>
+
+<div id="payment-form" style="display: none;">
+    <h1>Formulario de Tarjeta de Crédito</h1>
+    <form id="credit-card-form">
+      <label for="card-number">Número de Tarjeta:</label>
+      <input type="text" id="card-number" name="card-number" required minlength="12" maxlength="12">
+      <label for="card-holder">Titular de la Tarjeta:</label>
+      <input type="text" id="card-holder" name="card-holder" required>
+      <label for="expiration-date">Fecha de Vencimiento:</label>
+      <input type="month" id="expiration-date" name="expiration-date" placeholder="MM/AA" required maxlength="4">
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv" required maxlength="3">
+      <p>Valor a pagar: $<span id="payment-amount">0</span>COP</p>
+      <button type="submit">Pagar</button>
+    </form>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<script>
+  const originSelect = document.getElementById("origin");
+  const destinationSelect = document.getElementById("destination");
+  const addDestinationButton = document.getElementById("add-destination");
+  const clearFormButton = document.getElementById("clear-form");
+  const totalCostElement = document.getElementById("total-cost");
+  const continueButton = document.getElementById("continue-button");
+  const paymentForm = document.getElementById("payment-form");
+  const paymentAmountElement = document.getElementById("payment-amount");
+  const cartButton = document.getElementById("cart-button");
+  const clearCartButton = document.getElementById("clear-cart-button");
+  const cartItemsContainer = document.getElementById("cart-items");
+
+  let selectedDestinations = [];
+  let totalCost = 0;
+
+  originSelect.addEventListener("change", () => {
+    if (originSelect.value !== "") {
+      destinationSelect.removeAttribute("disabled");
+      originSelect.setAttribute("disabled", "true");
+    }
+  });
+
+  addDestinationButton.addEventListener("click", () => {
+    const selectedDestination = destinationSelect.value;
+    if (selectedDestination !== "" && selectedDestinations.length < 5) {
+      if (!selectedDestinations.includes(selectedDestination)) {
+        selectedDestinations.push(selectedDestination);
+        totalCost += 6000;
+        updateTotalCost();
+        updateSelectedDestinationsList();
+        updatePaymentAmount();
+        if (selectedDestinations.length >= 5) {
+          addDestinationButton.disabled = true;
+        }
+      }
+    }
+  });
+
+  clearFormButton.addEventListener("click", () => {
+    selectedDestinations = [];
+    totalCost = 0;
+    updateTotalCost();
+    updateSelectedDestinationsList();
+    destinationSelect.value = "";
+    destinationSelect.removeAttribute("disabled");
+    originSelect.removeAttribute("disabled");
+    addDestinationButton.disabled = false;
+  });
+
+  continueButton.addEventListener("click", () => {
+    if (selectedDestinations.length > 0) {
+      document.getElementById("destinations-form").style.display = "none";
+      paymentForm.style.display = "block";
+    } else {
+      alert("Agrega al menos un destino antes de continuar.");
+    }
+  });
+
+  const creditCardForm = document.getElementById("credit-card-form");
+  creditCardForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    alert("Pago realizado con éxito. ¡Disfruta tu viaje!");
+    addToCart();
+    displayCart();
+  });
+
+  cartButton.addEventListener("click", () => {
+    cartItemsContainer.style.display = "block";
+    paymentForm.style.display = "none";
+    document.getElementById("destinations-form").style.display = "none";
+  });
+
+  clearCartButton.addEventListener("click", () => {
+    localStorage.removeItem("cartItems");
+    displayCart();
+  });
+
+  function updateTotalCost() {
+    totalCostElement.textContent = totalCost;
+  }
+
+  function updateSelectedDestinationsList() {
+    const selectedDestinationsList = document.getElementById("selected-destinations");
+    selectedDestinationsList.innerHTML = selectedDestinations.map(dest => `<li>${dest}</li>`).join("");
+  }
+
+  function updatePaymentAmount() {
+    paymentAmountElement.textContent = totalCost;
+  }
+
+  function addToCart() {
+    const productName = `Origen: ${originSelect.value}, Destino: ${selectedDestinations.join(", ")}, Valor: ${totalCost} COP`;
+    const cartItems = getFromLocalStorage();
+    cartItems.push(productName);
+    saveToLocalStorage(cartItems);
+  }
+
+  function saveToLocalStorage(cartItems) {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }
+
+  function getFromLocalStorage() {
+    return JSON.parse(localStorage.getItem("cartItems")) || [];
+  }
+
+  function displayCart() {
+    const cartItems = getFromLocalStorage();
+    cartItemsContainer.innerHTML = "";
+
+    if (cartItems.length === 0) {
+      cartItemsContainer.innerHTML = "<p>El carrito está vacío.</p>";
+      return;
+    }
+
+    const cartList = document.createElement("ul");
+    cartItems.forEach(item => {
+      const cartItem = document.createElement("li");
+      cartItem.textContent = item;
+      cartList.appendChild(cartItem);
+    });
+
+    cartItemsContainer.appendChild(cartList);
+  }
+
+  window.onload = function() {
+    displayCart();
+  };
+</script>
+
+<style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+  
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      color: #0055a5;
+      text-align: center;
+      margin: 20px 0;
+    }
+  
+    form {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  
+    label, button {
+      display: block;
+      margin-bottom: 10px;
+    }
+  
+    select, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  
+    button {
+      background-color: #0055a5;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+  
+    #payment-form {
+      display: none;
+    }
+  
+    #credit-card-form{
+      padding-right: 45px;
+    }
+  
+    #selected-destinations-container{
+      text-align: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  
+    select{
+      margin-bottom: 15px;
+    }
+  
+    #cart-button{
+        margin-top: 20px;
+        margin-left: 20px;
+        display: flex;
+    }
+
+    #clear-cart-button{
+        display: flex;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+}
+
+header {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.trainimg{
+  width: 200px;
+}
+
+nav {
+  background-color: #2980b9;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+  font-weight: bold;
+}
+
+section {
+  padding: 20px;
+}
+
+.section img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+footer {
+  background-color: #34495e;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+header {
+  background-color: #3498db;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+.section {
+  width: 350px;
+  height: 350px;
+  background-color: #f1f1f1;
+  margin: 10px;
+  text-align: center;
+  padding: 10px;
+}
+.section img {
+  max-width: 100%;
+  max-height: 100%;
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+#selected-destinations-container{
+  text-decoration: none;
+  margin: 0 20px;
+  font-weight: bold;
+}
+  </style>
+
+      <footer>
+        <p>&copy; 2007-2023 Transborder. Todos los derechos reservados.</p>
+      </footer>
+</body>
+</html>

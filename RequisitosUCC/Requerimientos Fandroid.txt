@@ -1,0 +1,27 @@
+Solución caso Fandroid 1.  
+A continuación se presentan los requerimientos para la eficiente solución del caso.  
+Requisitos funcionales:  
+1. Registro de usuarios: Se debe poder crear una cuenta de usuario que necesite información personal, como: nombre, correo electrónico y contraseña. Además, deben registrar los datos de su tarjeta de crédito, como por ejemplo: número de tarjeta, fecha de vencimiento y CVC.  El sistema debe pedirle una dirección de envío para sus pedidos. También, el usuario debe proporcionar un número telefónico. 
+2. Inicio de sesión: Los usuarios deben contar con la capacidad de acceder a sus cuentas utilizando el correo y contraseña que proporcionaron anteriormente.  
+3. Exploración: Los usuarios deben tener la opción de buscar productos según distintos criterios, por ejemplo: Nombre, categoría, y precio.  
+4. Detalles del producto: Los usuarios deben poder ver detalladamente el producto deseado. Como por ejemplo: Descripción, fotos, reseñas y puntuaciones del producto.  
+5. Carrito de compras: Los usuarios deben poder comprar productos desde el carrito de compras. Antes de pagar, el usuario debe poder ver un resumen de los productos, antes de darle click al botón de pago. El sistema debe procesar y validar el pago utilizando la información de la tarjeta de crédito asociada por el cliente cuando se registró en la plataforma.  
+6. Historial de compras: El cliente debe poder ver las compras hechas anteriormente.  
+ 
+Requisitos funcionales Fandroid 2: 
+1. Administración de cuenta: El cliente debe poder modificar su información personal y cambiar información de su tarjeta de crédito almacenada en el perfil. Asimismo, debe poder cambiar su contraseña. El cliente debe tener la capacidad de cerrar sesión en la cuenta, y también, de eliminar su cuenta.  
+2. Acumulación de puntos: El usuario debe poder acumular puntos por cada compra realizada con su tarjeta de crédito. El sistema debe tener la capacidad de poder llevar un registro actualizado de los puntos acumulados por cada usuario.  
+3. Canje de puntos: Los usuarios deben tener la opción de canjear los puntos acumulados por premios físicos. Además, el sistema debe calcular que premio puede redimir según la cantidad de puntos acumulados, y le tiene que mostrar al cliente, la serie de productos que puede canjear con los puntos obtenidos.  
+4. Validación del canje: El sistema le tiene que permitir a los usuarios programar una llamada telefónica a los usuarios con el ejecutivo de canjes. El usuario debe proporcionar información relevante al ejecutivo, por ejemplo, el premio que desea. El ejecutivo debe emitir un certificado canjeable, este debe ser enviado al correo electrónico que el usuario proporcionó anteriormente. Este, debe tener instrucciones detalladas para la redención del canje, incluyendo donde lo puede ir a reclamar, es decir, en alguna de las tiendas asociadas con la empresa Fandroid.  
+ 
+Requisitos no funcionales: 
+• Los datos personales y financieros de los usuarios deben estar seguros mediante medidas de seguridad sólidas. (Seguridad) 
+• La interfaz de usuario debe ser intuitiva y de fácil navegación. Los pasos para comprar productos, cambiar datos personales y canjear puntos deben ser claro y sencillos (usabilidad) 
+• El sistema debe procesar las transacciones de compra de manera rápida, definiendo un tiempo, y este no debe ser excedido, para asegurar una experiencia fluida. (eficiencia) 
+• La plataforma debe estar siempre disponible, 24/7, para que los usuarios accedan y efectúen compras en cualquier momento. (disponibilidad) 
+• El sistema debe ser escalable para afrontar un aumento en la cantidad de usuarios y transacciones sin que afecte su rendimiento. También, debe tener la capacidad de adaptarse a cambios en la demanda en horas de alta concurrencia. (escalabilidad) 
+• El sistema de estar diseñado de manera modular, tener código ordenado y limpio, facilitando actualizaciones futuras y tareas de mantenimiento sin causar contratiempos. (mantenibilidad) 
+• El sistema debe ser sometido a pruebas rigurosas de seguridad y calidad, con el propósito de asegurar su correcto funcionamiento y ausencia de fallos. (Testability) 
+ 
+Integrantes: Juan Fernando Rosero, Juan José Burbano. 
+ 
