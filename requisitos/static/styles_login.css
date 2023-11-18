@@ -1,0 +1,59 @@
+/* Estilos generales para el cuerpo y el formulario */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Color de fondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ajusta según el tamaño deseado */
+    margin: 0;
+}
+
+.form-container {
+    background-color: #ffffff; /* Color de fondo del formulario */
+    border: 1px solid #dcdcdc; /* Borde del formulario */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    padding: 20px;
+    width: 300px; /* Ancho del formulario */
+}
+
+/* Estilos para etiquetas y campos de entrada */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333333; /* Color del texto de la etiqueta */
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #dcdcdc; /* Borde del campo de entrada */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el botón */
+button {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #ffffff; /* Color del texto del botón */
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}
+
+/* Estilos para el enlace de olvidar contraseña o registrar */
+a {
+    color: #007bff; /* Color del enlace */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Subraya el enlace al pasar el ratón sobre él */
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_dashboard.css') }}">
+    <!-- Agrega el enlace a Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Dashboard</title>
+    <style>
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            padding-top: 56px; /* Ajusta según el tamaño de la barra de navegación superior */
+            padding-left: 20px; /* Ajusta según el espacio que desees en el lado izquierdo */
+            padding-right: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: #f8f9fa; /* Color de fondo del menú izquierdo */
+            border-right: 1px solid #dee2e6; /* Añade un borde derecho */
+        }
+
+        .nav-link {
+            padding: 15px 0; /* Aumenta el espacio interno de los elementos del menú */
+        }
+
+        .main-content {
+            margin-left: 250px; /* Ajusta según el ancho del menú izquierdo */
+            padding: 20px; /* Ajusta según el espacio que desees en el área central */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Menú izquierdo -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        {% if usuario_actual %}
+                            <li class="nav-item">
+                                <h4>Bienvenido al menú, {{ usuario_actual }}!</h4>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <h4>Bienvenido al Dashboard!</h4>
+                            </li>
+                        {% endif %}
+                        
+                        {% if rol_usuario == 'admin' %}
+                            <li class="nav-item">
+                                <p>Eres un administrador</p>
+                            </li>
+                        {% endif %}
+
+                        <li class="nav-item">
+                            <form action="{{ url_for('agregar_receta') }}" method="GET">
+                                <button type="submit" class="btn btn-primary btn-block">Agregar Nueva Receta</button>
+                            </form>
+                        </li><br>
+
+                        <li class="nav-item">
+                            <form action="{{ url_for('ver_ingredientes') }}" method="GET">
+                                <button type="submit" class="btn btn-primary btn-block">Ver Ingredientes</button>
+                            </form>
+                        </li><br>
+
+                        <li class="nav-item">
+                            <a href="{{ url_for('agregar_ingredientes') }}" class="btn btn-primary btn-block">Agregar Ingredientes</a>
+                        </li><br>
+
+
+                        <li class="nav-item">
+                            <form action="{{ url_for('cerrar_sesion') }}" method="POST">
+                                <button type="submit" class="btn btn-danger btn-block">Cerrar Sesión</button>
+                            </form><br>
+
+
+                            
+                            
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Área central con imagen -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main-content">
+                {% if recetas %}
+                    <!-- Contenido cuando hay recetas -->
+                    <h2>Recetas:</h2>
+                    <ul>
+                        {% for nombre, info in recetas.items() %}
+                            <li>
+                                {{ nombre }}
+                                <form action="{{ url_for('editar_receta', nombre=nombre) }}" method="GET">
+                                    <button type="submit" class="btn btn-info">Editar</button>
+                                </form>
+                                <form action="{{ url_for('eliminar_receta', nombre=nombre) }}" method="POST">
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </li>
+                            <ul>
+                                <li>Tiempo de preparación: {{ info['tiempo_preparacion'] }} horas</li>
+                                <li>Personas: {{ info['personas'] }}</li>
+                                <li>Ingredientes:</li>
+                                <ul>
+                                    {% for ingrediente, cantidad in info['ingredientes'].items() %}
+                                        <li>{{ ingrediente }}: {{ cantidad }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <li>Descripción: {{ info['descripcion'] }}</li>
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <!-- Contenido cuando no hay recetas -->
+                    <h2>Área central</h2>
+                    
+                {% endif %}
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

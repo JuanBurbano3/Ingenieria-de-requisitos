@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_editar_receta.css') }}">
+    <title>Editar Receta</title>
+</head>
+<body>
+    <h1>Editar Receta</h1>
+    <form method="POST" action="{{ url_for('editar_receta', nombre=nombre_receta) }}">
+        {{ form.hidden_tag() }}
+        
+        <label for="nombre">Nuevo Nombre:</label>
+        {{ form.nombre() }}
+        <br>
+        
+        <label for="tiempo_preparacion">Nuevo Tiempo de Preparación (horas):</label>
+        {{ form.tiempo_preparacion() }}
+        <br>
+        
+        <label for="personas">Nuevo Número de Personas:</label>
+        {{ form.personas() }}
+        <br>
+        
+        <label for="ingredientes">Nuevos Ingredientes (nombre1:cantidad1,nombre2:cantidad2,...):</label>
+        {{ form.ingredientes() }}
+        <br>
+        
+        <label for="descripcion">Nueva Descripción:</label>
+        {{ form.descripcion() }}
+        <br>
+        
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

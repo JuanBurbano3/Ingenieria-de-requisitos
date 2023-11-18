@@ -1,0 +1,81 @@
+/* styles_index.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f0f0;  /* Color de fondo general */
+}
+
+header {
+    background: linear-gradient(to right, #000dff, #001eff);  /* Fondo con gradiente */
+    color: #fff;
+    text-align: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* Animación para el encabezado */
+@keyframes circle-in-hesitate {
+    0% {
+        clip-path: circle(0%);
+    }
+    40% {
+        clip-path: circle(40%);
+    }
+    100% {
+        clip-path: circle(125%);
+    }
+}
+
+[transition-style="in:circle:hesitate"] {
+    animation: 2.5s cubic-bezier(.25, 1, .30, 1) circle-in-hesitate both;
+}
+
+/* Resto del estilo del índice */
+
+section {
+    padding: 40px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+button {
+    background: linear-gradient(to right, #6a00ff, rgb(0, 0, 255));  /* Botones con gradiente */
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 25px;  /* Bordes redondeados */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+}
+
+button:hover {
+    background: linear-gradient(to right, #6a00ff, #6a00ff);
+}
+
+footer {
+    background: linear-gradient(to right, #6a00ff, #6a00ff);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

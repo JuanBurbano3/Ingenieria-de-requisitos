@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Tu Aplicación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_index.css') }}">
+</head>
+<body>
+    <header class="animate-in-circle-swoop">
+        <h1>Mercedario Recetas</h1>
+        <p>Esta app tiene como propósito que tengas un mejor ordenamiento de tus recetas, ¡disfrútala!.</p>
+    </header>
+
+    <section class="content-animation">
+        <h2>Acciones</h2>
+        <a href="{{ url_for('login') }}"><button>Iniciar Sesión</button></a>
+        <a href="{{ url_for('registro') }}"><button>Registrarse</button></a>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Tu Aplicación</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_agregar_ingredientes.css') }}">
+    <title>Agregar Nuevo Ingrediente</title>
+</head>
+<body>
+    <h1>Agregar Nuevo Ingrediente</h1>
+
+    <form method="POST" action="{{ url_for('agregar_ingredientes') }}">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+    
+        <label for="unidad">Unidad:</label>
+        <input type="text" id="unidad" name="unidad" required>
+    
+        <label for="valor_unidad">Valor por Unidad:</label>
+        <input type="text" id="valor_unidad" name="valor_unidad" required>
+    
+        <label for="sitio_compra">Sitio de Compra:</label>
+        <input type="text" id="sitio_compra" name="sitio_compra" required>
+    
+        <label for="calorias">Calorías por Unidad:</label>
+        <input type="text" id="calorias" name="calorias" required>
+    
+        <button type="submit">Agregar Ingrediente</button>
+    </form>
+    
+</body>
+</html>

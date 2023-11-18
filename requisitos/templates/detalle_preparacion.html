@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Preparación</title>
+    <!-- Agrega tus enlaces a las hojas de estilo CSS si es necesario -->
+</head>
+<body>
+    <h1>Calcular Preparación para {{ nombre_receta }}</h1>
+
+    <form method="post" action="{{ url_for('calcular_preparacion', nombre=nombre_receta) }}">
+        {{ form.hidden_tag() }}
+        
+        <label for="personas_preparacion">Número de Personas para Preparación:</label>
+        {{ form.personas_preparacion(id="personas_preparacion") }}
+        {{ form.submit() }}
+    </form>
+
+    <!-- Puedes mostrar los detalles de la preparación aquí -->
+    {% if personas and calorias_por_porcion and costo_ingredientes and ingredientes_proporcionales %}
+        <h2>Detalles de la Preparación</h2>
+        <p>Cantidad de Personas: {{ personas }}</p>
+        <p>Calorías por Porción: {{ calorias_por_porcion }}</p>
+        <p>Costo de Ingredientes: {{ costo_ingredientes }}</p>
+        <p>Ingredientes Proporcionales:</p>
+        <ul>
+            {% for ingrediente, cantidad in ingredientes_proporcionales.items() %}
+                <li>{{ ingrediente }}: {{ cantidad }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Puedes agregar más detalles según sea necesario -->
+
+    <!-- Agrega tus scripts JavaScript si es necesario -->
+</body>
+</html>

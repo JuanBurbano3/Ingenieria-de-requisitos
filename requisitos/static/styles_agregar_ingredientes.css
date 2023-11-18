@@ -1,0 +1,59 @@
+/* styles_agregar_receta.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f2f2f2;  /* Color de fondo */
+    color: #333;  /* Color del texto */
+}
+
+h1 {
+    text-align: center;
+    color: #333;  /* Color del encabezado */
+    padding: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;  /* Color de fondo del formulario */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;  /* Color de las etiquetas del formulario */
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;  /* Borde del campo de entrada */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"] {
+    background-color: #27ae60;  /* Color de fondo del botón */
+    color: #fff;  /* Color del texto del botón */
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(76, 0, 255);  /* Cambia el color de fondo al pasar el mouse sobre el botón */
+}

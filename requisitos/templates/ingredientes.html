@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_ingredientes.css') }}">
+    <title>Lista de Ingredientes</title>
+</head>
+<body>
+    <h1>Lista de Ingredientes</h1>
+
+    <ul>
+        {% for ingrediente, info in ingredientes.items() %}
+            <li>
+                <strong>{{ ingrediente }}</strong>
+                <ul>
+                    <li>Unidad: {{ info['unidad'] }}</li>
+                    <li>Valor por Unidad: {{ info['valor_unidad'] }}</li>
+                    <li>Sitio de Compra: {{ info['sitio_compra'] }}</li>
+                    <li>Calorías por Unidad: {{ info['calorias'] }}</li>
+                </ul>
+                <form action="{{ url_for('editar_ingrediente', ingrediente=ingrediente) }}" method="GET">
+                    <button type="submit">Editar</button>
+                </form>
+                <form action="{{ url_for('eliminar_ingrediente', ingrediente=ingrediente) }}" method="POST">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Botón para agregar nuevo ingrediente -->
+    <form action="{{ url_for('agregar_ingrediente') }}" method="GET">
+        <button type="submit">Agregar Nuevo Ingrediente</button>
+    </form>
+
+    <!-- Otros elementos de la interfaz o funcionalidad adicional según sea necesario -->
+</body>
+</html>

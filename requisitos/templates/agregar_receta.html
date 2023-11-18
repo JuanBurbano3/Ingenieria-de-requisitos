@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='agregar_receta.css') }}">
+    <title>Agregar Receta</title>
+</head>
+<body>
+    <h1>Agregar Receta</h1>
+
+    <form method="post" action="{{ url_for('agregar_receta') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            <label for="nombre">Nombre:</label>
+            {{ form.nombre(size=32) }}
+        </div>
+        <div>
+            <label for="tiempo_preparacion">Tiempo de Preparación (horas):</label>
+            {{ form.tiempo_preparacion }}
+        </div>
+        <div>
+            <label for="personas">Número de Personas:</label>
+            {{ form.personas }}
+        </div>
+        <div>
+            <label for="ingredientes">Ingredientes (cantidad, nombre):</label>
+            {{ form.ingredientes }}
+        </div>
+        <div>
+            <label for="descripcion">Descripción:</label>
+            {{ form.descripcion }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</body>
+</html>

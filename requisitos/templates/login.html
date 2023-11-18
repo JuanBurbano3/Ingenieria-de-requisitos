@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_login.css') }}">
+    <title>Inicio de sesión</title>
+</head>
+<body>
+    <h1>Es bueno verte de nuevo      </h1>
+    <form method="POST" action="{{ url_for('login') }}">
+        {{ form.hidden_tag() }}
+        
+        <label for="usuario">Usuario:</label>
+        {{ form.usuario() }}
+        <br>
+        
+        <label for="contra">Contraseña:</label>
+        {{ form.contra() }}
+        <br>
+        
+        {{ form.submit() }}
+    </form>
+</body>
+</html>
